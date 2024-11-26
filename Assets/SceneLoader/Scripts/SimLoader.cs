@@ -16,6 +16,7 @@ public class SceneLoader : MonoBehaviour {
   private GameObject _simSceneObj;
   private SimScene _simScene;
   private Dictionary<string, Transform> _simObjTrans = new ();
+  private Dictionary<string, MeshFilter> _simObjMeshes = new();
   private Dictionary<string, Tuple<SimMesh, List<MeshFilter>>> _pendingMesh = new ();
   private Dictionary<string, Tuple<SimTexture, List<Material>>> _pendingTexture = new ();
 
@@ -119,6 +120,7 @@ public class SceneLoader : MonoBehaviour {
               _pendingMesh[simMesh.hash] = new(simMesh, new());
             }
             _pendingMesh[simMesh.hash].Item2.Add(visualObj.GetComponent<MeshFilter>());
+            _simObjMeshes.Add(body.name, visualObj.GetComponent<MeshFilter>());
             break;
           }
           case "CUBE":
@@ -222,6 +224,11 @@ public class SceneLoader : MonoBehaviour {
 
   public Dictionary<string, Transform> GetObjectsTrans() {
     return _simObjTrans;
+  }
+
+  public Dictionary<string, MeshFilter> GetObjectMeshes()
+  {
+    return _simObjMeshes;
   }
 
   public GameObject GetSimObject() {
