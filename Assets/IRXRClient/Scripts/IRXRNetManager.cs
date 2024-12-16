@@ -86,11 +86,11 @@ public class IRXRNetManager : Singleton<IRXRNetManager> {
     else
     {
       // The key does not exist, handle it accordingly
-      _localInfo.name = "UnityClient";
+      _localInfo.name = "ALRMetaQuest3";
       Debug.Log($"Host Name not found, using default name {_localInfo.name}");
     }
     _localInfo.instance = Guid.NewGuid().ToString();
-    _localInfo.type = "UnityClient";
+    _localInfo.type = "MetaQuest3";
     _localInfo.servicePort = ((int)ClientPort.Service).ToString();
     _localInfo.topicPort = ((int)ClientPort.Topic).ToString();
   }
