@@ -47,9 +47,5 @@ public class SceneRayMovable : MonoBehaviour
         rayInteraction.SetActive(false);
         isMovable = false;
     }
-
-    public bool IsMovable()
-    {
-        return(isMovable);
-    }  
+   
 }
