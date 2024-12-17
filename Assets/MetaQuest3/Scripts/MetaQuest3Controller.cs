@@ -43,7 +43,7 @@ public class MetaQuest3Controller : Streamer
     public void StartVibration(string message) {
         if (message == "left")
         {
-            OVRInput.SetControllerVibration(1.0f, 1.0f, OVRInput.Controller.LTouch);
+           OVRInput.SetControllerVibration(1.0f, 1.0f, OVRInput.Controller.LTouch);
         }
         else if (message == "right")
         {
@@ -73,7 +73,7 @@ public class MetaQuest3Controller : Streamer
         leftPos = rootTrans.InverseTransformPoint(leftPos);
         leftHand.pos = new List<float> {leftPos.z, -leftPos.x, leftPos.y};
         Quaternion leftRot = trackingSpace.rotation * OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
-        leftRot = Quaternion.Inverse(rootTrans.rotation) * leftRot;
+        leftRot *=  Quaternion.Inverse(rootTrans.rotation);
         leftHand.rot = new List<float> {-leftRot.z, leftRot.x, -leftRot.y, leftRot.w};
         leftHand.index_trigger = OVRInput.Get(OVRInput.RawButton.LIndexTrigger);
         leftHand.hand_trigger = OVRInput.Get(OVRInput.RawButton.LHandTrigger);
@@ -83,8 +83,8 @@ public class MetaQuest3Controller : Streamer
         Vector3 rightPos =  trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch));
         rightPos = rootTrans.InverseTransformPoint(rightPos);
         rightHand.pos = new List<float> {rightPos.z, -rightPos.x, rightPos.y};
-        Quaternion rightRot = trackingSpace.rotation * OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);        
-        rightRot = Quaternion.Inverse(rootTrans.rotation) * rightRot;
+        Quaternion rightRot = trackingSpace.rotation * OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
+        rightRot *= Quaternion.Inverse(rootTrans.rotation);
         rightHand.rot = new List<float> {-rightRot.z, rightRot.x, -rightRot.y, rightRot.w};
         rightHand.index_trigger = OVRInput.Get(OVRInput.RawButton.RIndexTrigger);
         rightHand.hand_trigger = OVRInput.Get(OVRInput.RawButton.RHandTrigger);
