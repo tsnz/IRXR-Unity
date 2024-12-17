@@ -323,6 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingSpace: {fileID: 161466555}
   rootTrans: {fileID: 1970156649}
+  sceneRayMovable: {fileID: 1970156657}
 --- !u!1 &1506789305
 GameObject:
   m_ObjectHideFlags: 0

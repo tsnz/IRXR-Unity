@@ -48,4 +48,8 @@ public class SceneRayMovable : MonoBehaviour
         isMovable = false;
     }
    
+    public bool IsMovable()
+    {
+        return isMovable;
+    }
 }
