@@ -73,7 +73,7 @@ public class MetaQuest3Controller : Streamer
         leftPos = rootTrans.InverseTransformPoint(leftPos);
         leftHand.pos = new List<float> {leftPos.z, -leftPos.x, leftPos.y};
         Quaternion leftRot = trackingSpace.rotation * OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
-        leftRot *=  Quaternion.Inverse(rootTrans.rotation);
+        leftRot = Quaternion.Inverse(rootTrans.rotation) * leftRot;
         leftHand.rot = new List<float> {-leftRot.z, leftRot.x, -leftRot.y, leftRot.w};
         leftHand.index_trigger = OVRInput.Get(OVRInput.RawButton.LIndexTrigger);
         leftHand.hand_trigger = OVRInput.Get(OVRInput.RawButton.LHandTrigger);
@@ -84,7 +84,7 @@ public class MetaQuest3Controller : Streamer
         rightPos = rootTrans.InverseTransformPoint(rightPos);
         rightHand.pos = new List<float> {rightPos.z, -rightPos.x, rightPos.y};
         Quaternion rightRot = trackingSpace.rotation * OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
-        rightRot *= Quaternion.Inverse(rootTrans.rotation);
+        rightRot = Quaternion.Inverse(rootTrans.rotation) * rightRot;
         rightHand.rot = new List<float> {-rightRot.z, rightRot.x, -rightRot.y, rightRot.w};
         rightHand.index_trigger = OVRInput.Get(OVRInput.RawButton.RIndexTrigger);
         rightHand.hand_trigger = OVRInput.Get(OVRInput.RawButton.RHandTrigger);
