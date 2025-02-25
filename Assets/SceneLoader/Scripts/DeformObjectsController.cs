@@ -44,6 +44,10 @@ public class DeformObjectsController : MonoBehaviour
     // 
     ReadOnlySpan<byte> msg = new ReadOnlySpan<byte>(streamMsg);
     Int32 updateListEndPos = BitConverter.ToInt32(msg.Slice(0, sizeof(Int32))); // L
+
+    if (updateListEndPos == 0)
+      return;
+
     string updateListContents = Encoding.UTF8.GetString(streamMsg.Skip(sizeof(Int32)).Take(updateListEndPos).ToArray()); // S
 
     if (updateListContents[updateListContents.Length - 1] == ';')
